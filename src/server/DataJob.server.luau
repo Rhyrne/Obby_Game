@@ -1,9 +1,14 @@
 local players = game:GetService("Players")
+local tekrarliDepo = game:GetService("ReplicatedStorage")
+local yukleVeKaydetModule = require(tekrarliDepo.Shared.SaveAndLoadMechanics)
+local obbyMekanikleri = require(tekrarliDepo.Shared.ObbyMechanics)
 
 players.PlayerAdded:Connect(function(player)
-	local leaderboard = Instance.new("Folder", player)
-	leaderboard.Name = "leaderstats"
-	local stage = Instance.new("IntValue", leaderboard)
-	stage.Name = "Stage"
-	stage.Value = 1
+	yukleVeKaydetModule.liderTablosuOlustur(player)
+	yukleVeKaydetModule.verileriTabloyaGetir(player)
+	obbyMekanikleri.zamanArttirma(player)
+end)
+
+players.PlayerRemoving:Connect(function(player)
+	yukleVeKaydetModule.verileriTabloyaKaydet(player)
 end)

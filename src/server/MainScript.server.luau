@@ -1,6 +1,4 @@
-local uzaktanOlaylar = game:GetService("ReplicatedStorage").EventsNTBFired
+local uzaktanOlaylarModule = require(game:GetService("ReplicatedStorage").Shared.StageAndSpawnMechanics)
 
-uzaktanOlaylar.StageInfo.Event:Connect(function(player,bolum)
-	local mevcutBolum = player:FindFirstChild("leaderstats").Stage
-	mevcutBolum.Value = bolum
-end)
+uzaktanOlaylarModule.bolumPartinaDokundu()
+
