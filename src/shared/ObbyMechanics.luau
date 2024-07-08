@@ -1,8 +1,5 @@
 local functions = {}
 
-local tweenService = game:GetService("TweenService")
-
-
 -- Lider tablosunda bulunan özellikler ile ilgili mekaniklerin fonksiyonları
 
 function functions.zamanArttirma(oyuncu)
@@ -11,31 +8,21 @@ function functions.zamanArttirma(oyuncu)
     end
 end
 
--- Obby içerisinde bulunan ölümcül tuzaklar, hareketli parçalar için fonksiyonlar
+-- Oyunda parçaların ileri, geri, yukarı ve aşağı hareket etmesini sağlayan mekaniğin fonksiyonu
 
-function functions.IleriVeGeriParcalar(parca)
-    
-	local konumBilgileri = string.split(parca.Name, ",")
-	local x = tonumber(konumBilgileri[1])
-	local y = tonumber(konumBilgileri[2])
-	local z = tonumber(konumBilgileri[3])
-	local zaman = tonumber(konumBilgileri[4])
+function functions.parcalarIlerletiliyor(parca)
 	
-	local hedefKonum = Vector3.new(x, y, z)
-
-    local tweenInfo = TweenInfo.new(
-	zaman, -- Süre (saniye)
-	Enum.EasingStyle.Linear,
-	Enum.EasingDirection.InOut,
-	-1, -- Tekrar sayısı (-1 sınırsız olmasını sağlar)
-	true, -- Yoyo (animasyonu tersine çevir)
-	0 -- Gecikme süresi
-    )
-
-	local hedef = {Position = hedefKonum}
-
-    local tween = tweenService:Create(parca, tweenInfo, hedef)
-    tween:Play()
+	local platform = parca.Platform
+	local start = parca.A
+	local finish = parca.B
+	local bodyPos = platform.BodyPosition
+	
+	while true do
+		bodyPos.Position = start.Position
+		wait(tonumber(parca.Name))
+		bodyPos.Position = finish.Position
+		wait(tonumber(parca.Name))
+	end
 end
 
 return functions

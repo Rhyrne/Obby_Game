@@ -1,6 +1,6 @@
-local functions = {}
-
 local uzaktanOlaylar = game:GetService("ReplicatedStorage").EventsNTBFired
+
+local functions = {}
 
 -- Uzaktan ulaşım için hazırlanmış(client to server, server to server, client to client) fonksiyonlar
 
