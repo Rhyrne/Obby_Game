@@ -1,3 +1,5 @@
+local obbyParcalari = game:GetService("Workspace").ObbyParts
+
 local functions = {}
 
 -- Oyuncunun vardığı bölümle ilgili bilgi, touched v.b. durum için fonksiyonlar
@@ -16,6 +18,26 @@ function functions.alSuBolumleri(info1,info2)
             end
         end)
     end
+end
+
+-- Oyuncuya ait karakter öldüğünde ya da düştüğünde veya olağanüstü bir durum yaşandığında karakteri spawn eden fonksiyon
+
+function functions.karakteriYenidenBaslat(player)
+	player.CharacterAdded:Connect(function(character)
+		if character then
+			local onemliParca = character:WaitForChild("HumanoidRootPart")
+			local mevcutBolum = player:FindFirstChild("leaderstats").Stage.Value
+			local spawnNoktasi = game.Workspace.ObbyParts.Stages[mevcutBolum]
+
+			if onemliParca and spawnNoktasi then
+				onemliParca.CFrame = spawnNoktasi.CFrame + Vector3.new(0, 3, 0)
+			else
+				print("HumanoidRootPart veya spawn noktası bulunamadı")
+			end
+		else
+			print("Karakter yok")
+		end
+	end)
 end
 
 return functions
