@@ -1,5 +1,3 @@
-local obbyParcalari = game:GetService("Workspace").ObbyParts
-
 local functions = {}
 
 -- Oyuncunun vardığı bölümle ilgili bilgi, touched v.b. durum için fonksiyonlar
@@ -32,7 +30,7 @@ function functions.karakteriYenidenBaslat(player)
 			if onemliParca and spawnNoktasi then
 				onemliParca.CFrame = spawnNoktasi.CFrame + Vector3.new(0, 3, 0)
 			else
-				print("HumanoidRootPart veya spawn noktası bulunamadı")
+				print("HumanoidRootPart veya spawn noktasi bulunamadi")
 			end
 		else
 			print("Karakter yok")

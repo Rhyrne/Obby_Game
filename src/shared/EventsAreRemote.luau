@@ -38,4 +38,18 @@ function functions.zamanArttirmaKodu()
 	end)
 end
 
+function functions.kirpanPartinaDokundu()
+	uzaktanOlaylar.NeedBlind.Event:Connect(function(player, obje)
+		if player then
+			obje.Transparency = 0.5
+			obje.CanCollide = false
+			obje.CanTouch = false
+			wait(2)
+			obje.Transparency = 0
+			obje.CanCollide = true
+			obje.CanTouch = true
+		end
+	end)
+end
+
 return functions

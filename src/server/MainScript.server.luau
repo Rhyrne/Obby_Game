@@ -13,3 +13,7 @@ uzaktanOlaylarModule.olumPartinaDokundu()
 -- Oyuncu oyuna girdiğinde, ait olduğu "Time" durumunu arttırmak için tetiklenir
 
 uzaktanOlaylarModule.zamanArttirmaKodu()
+
+-- Basıldığında kaybolan parçalara basılınca tetikleni
+
+uzaktanOlaylarModule.kirpanPartinaDokundu()

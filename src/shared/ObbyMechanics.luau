@@ -39,4 +39,16 @@ function functions.olumculParca(info1, info2)
     end
 end
 
+function functions.gozKirpanParca(info1, info2)
+	for _, child in pairs(info2:GetDescendants()) do
+		local obje = child
+		obje.Touched:Connect(function(hit)
+			local player = game.Players:GetPlayerFromCharacter(hit.Parent) 
+			if player then
+				info1:Fire(player, obje)
+			end
+		end)
+	end
+end
+
 return functions

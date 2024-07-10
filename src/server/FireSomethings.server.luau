@@ -9,3 +9,5 @@ print("FireSomethings is going on")
 bolumVeSpawnModule.alSuBolumleri(eventsNTBFired.StageInfo,obbyParcalari:FindFirstChild("Stages"))
 
 obbyModule.olumculParca(eventsNTBFired.KillSomeone, obbyParcalari:FindFirstChild("DamageParts"))
+
+obbyModule.gozKirpanParca(eventsNTBFired.NeedBlind, obbyParcalari:FindFirstChild("BlindParts"))
