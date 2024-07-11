@@ -14,6 +14,10 @@ uzaktanOlaylarModule.olumPartinaDokundu()
 
 uzaktanOlaylarModule.zamanArttirmaKodu()
 
--- Basıldığında kaybolan parçalara basılınca tetikleni
+-- Basıldığında kaybolan parçalara basılınca tetiklenir
 
 uzaktanOlaylarModule.kirpanPartinaDokundu()
+
+-- Satın alma işlemlerini gerçekleştiren fonksiyon tetiklenir
+
+uzaktanOlaylarModule.satinAlmaIslemi()

@@ -1,5 +1,6 @@
-local uzaktanOlaylar = game:GetService("ReplicatedStorage").EventsNTBFired
-local bolumVeSpawnModule = require(game:GetService("ReplicatedStorage").Shared.StageAndSpawnMechanics)
+local replicatedStorage = game:GetService("ReplicatedStorage")
+local uzaktanOlaylar = replicatedStorage.EventsNTBFired
+local bolumVeSpawnModule = require(replicatedStorage.Shared.StageAndSpawnMechanics)
 
 local functions = {}
 
@@ -48,6 +49,17 @@ function functions.kirpanPartinaDokundu()
 			obje.Transparency = 0
 			obje.CanCollide = true
 			obje.CanTouch = true
+		end
+	end)
+end
+
+function functions.satinAlmaIslemi()
+	uzaktanOlaylar.PlayerIsShopping.OnServerEvent:Connect(function(player, mevcutUrun, urunTuru)
+		if urunTuru == "Silah" then
+			local klonUrun = replicatedStorage.Gears[mevcutUrun]:Clone()
+			klonUrun.Parent = player.Backpack
+		else
+			print("what")
 		end
 	end)
 end
