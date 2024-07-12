@@ -21,10 +21,15 @@ end
 -- Oyuncuya ait karakter öldüğünde ya da düştüğünde veya olağanüstü bir durum yaşandığında karakteri spawn eden fonksiyon
 
 function functions.karakteriYenidenBaslat(player)
-	player.CharacterAdded:Connect(function(character)
+	player.CharacterAdded:Connect(function()
+		functions.yenidenBaslatma(player, player:FindFirstChild("leaderstats").Stage.Value)
+	end)
+end
+
+function functions.yenidenBaslatma(player, mevcutBolum)
+	local character = player.Character
 		if character then
 			local onemliParca = character:WaitForChild("HumanoidRootPart")
-			local mevcutBolum = player:FindFirstChild("leaderstats").Stage.Value
 			local spawnNoktasi = game.Workspace.ObbyParts.Stages[mevcutBolum]
 
 			if onemliParca and spawnNoktasi then
@@ -35,7 +40,6 @@ function functions.karakteriYenidenBaslat(player)
 		else
 			print("Karakter yok")
 		end
-	end)
 end
 
 return functions

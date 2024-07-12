@@ -1,4 +1,5 @@
 local eventsNTBFired = game:GetService("ReplicatedStorage").EventsNTBFired
+local bolumVeSpawnMekanikleri = require(game:GetService("ReplicatedStorage").Shared.StageAndSpawnMechanics) 
 
 local functions = {}
 
@@ -6,6 +7,10 @@ local functions = {}
 
 function functions.zamanArttirma(oyuncu)
 	eventsNTBFired.IncreaseTime:Fire(oyuncu)
+end
+
+function functions.karakterinBolumunuDegistir(oyuncu, bolum)
+	bolumVeSpawnMekanikleri.yenidenBaslatma(oyuncu, bolum)
 end
 
 -- Oyunda parçaların ileri, geri, yukarı ve aşağı hareket etmesini sağlayan mekaniğin fonksiyonu

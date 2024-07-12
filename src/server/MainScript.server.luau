@@ -21,3 +21,11 @@ uzaktanOlaylarModule.kirpanPartinaDokundu()
 -- Satın alma işlemlerini gerçekleştiren fonksiyon tetiklenir
 
 uzaktanOlaylarModule.satinAlmaIslemi()
+
+-- Lider tablosunun kullanıcılara gösterilmesini sağlıyor (düzgün çalışmıyor)
+
+uzaktanOlaylarModule.liderTablosunuDoldur()
+
+-- Karakterimiz istediği zaman istediği bölümler arasında geçi yapmasını sağlar
+
+uzaktanOlaylarModule.karakteriIstenilenBolumeIsinla()
