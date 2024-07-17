@@ -1,4 +1,5 @@
 local uzaktanOlaylarModule = require(game:GetService("ReplicatedStorage").Shared.EventsAreRemote)
+local bolumVeSpawnModule = require(game:GetService("ReplicatedStorage").Shared.StageAndSpawnMechanics)
 
 print("MainScript is going on")
 
@@ -26,6 +27,22 @@ uzaktanOlaylarModule.satinAlmaIslemi()
 
 uzaktanOlaylarModule.liderTablosunuDoldur()
 
--- Karakterimiz istediği zaman istediği bölümler arasında geçi yapmasını sağlar
+-- Karakterimiz istediği zaman istediği bölümler arasında geçiş yapmasını sağlar
 
 uzaktanOlaylarModule.karakteriIstenilenBolumeIsinla()
+
+-- Oyun içerisinde bulunan ve saldırmaya ya da özel yeteneklere yarayan gearların kullanılması durumunda tetiklenir
+
+uzaktanOlaylarModule.saldiriOlayi()
+uzaktanOlaylarModule.yetenekOlayi()
+
+-- Dünyadan düşen oyuncuları spawn noktalarına geri ışınlamaya yarayan fonksiyon
+
+game:GetService("Workspace").ObbyParts.WorldBorder.Touched:Connect(function(dokunanParca)
+	local karakter = dokunanParca.Parent
+	if karakter and karakter:FindFirstChild("Humanoid") then
+		local player = game:GetService("Players"):GetPlayerFromCharacter(karakter)
+		bolumVeSpawnModule.karakteriIsinla(player, player:FindFirstChild("leaderstats").Stage.Value)
+	end
+end)
+

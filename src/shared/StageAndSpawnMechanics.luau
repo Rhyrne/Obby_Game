@@ -2,16 +2,17 @@ local functions = {}
 
 -- Oyuncunun vardığı bölümle ilgili bilgi, touched v.b. durum için fonksiyonlar
 
-function functions.alSuBolumleri(info1,info2)
-	for _, child in pairs(info2:GetDescendants()) do
+function functions.alSuBolumleri(eventimiz,parcalar)
+	for _, child in pairs(parcalar:GetDescendants()) do
 		local obje = child
         obje.Touched:Connect(function(hit)
-        local player = game.Players:GetPlayerFromCharacter(hit.Parent) 
-            if player then
-                local mevcutBolum = player:FindFirstChild("leaderstats").Stage.Value
+        local oyuncu = game.Players:GetPlayerFromCharacter(hit.Parent) 
+            if oyuncu then
+				local mevcutBolum = oyuncu:FindFirstChild("leaderstats").Stage.Value
+				oyuncu:FindFirstChild("PlayerGui").ChangeStageUI.ChangeStageFrame.StageNum.Text = tonumber(obje.Name)
                 if mevcutBolum < tonumber(obje.Name) then
                     local bolum = tonumber(obje.Name)
-                    info1:Fire(player,bolum)
+                    eventimiz:Fire(oyuncu,bolum)
                 end
             end
         end)
@@ -20,16 +21,16 @@ end
 
 -- Oyuncuya ait karakter öldüğünde ya da düştüğünde veya olağanüstü bir durum yaşandığında karakteri spawn eden fonksiyon
 
-function functions.karakteriYenidenBaslat(player)
-	player.CharacterAdded:Connect(function()
-		functions.yenidenBaslatma(player, player:FindFirstChild("leaderstats").Stage.Value)
+function functions.karakteriYenidenBaslat(oyuncu)
+	oyuncu.CharacterAdded:Connect(function()
+		functions.karakteriIsinla(oyuncu, oyuncu:FindFirstChild("leaderstats").Stage.Value)
 	end)
 end
 
-function functions.yenidenBaslatma(player, mevcutBolum)
-	local character = player.Character
-		if character then
-			local onemliParca = character:WaitForChild("HumanoidRootPart")
+function functions.karakteriIsinla(oyuncu, mevcutBolum)
+	local karakter = oyuncu.Character
+		if karakter then
+			local onemliParca = karakter:WaitForChild("HumanoidRootPart")
 			local spawnNoktasi = game.Workspace.ObbyParts.Stages[mevcutBolum]
 
 			if onemliParca and spawnNoktasi then

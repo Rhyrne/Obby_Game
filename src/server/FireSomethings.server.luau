@@ -11,3 +11,13 @@ bolumVeSpawnModule.alSuBolumleri(eventsNTBFired.StageInfo,obbyParcalari:FindFirs
 obbyModule.olumculParca(eventsNTBFired.KillSomeone, obbyParcalari:FindFirstChild("DamageParts"))
 
 obbyModule.gozKirpanParca(eventsNTBFired.NeedBlind, obbyParcalari:FindFirstChild("BlindParts"))
+
+obbyParcalari.Coins.ChildAdded:Connect(function(parca)
+	if parca:IsA("MeshPart") or parca:IsA("Part") then
+		parca.Ching:Play()
+		obbyModule.paraDonmeVeYenileme(parca)
+	end
+end)
+
+obbyModule.paralariKlonlaVeIsinla()
+
